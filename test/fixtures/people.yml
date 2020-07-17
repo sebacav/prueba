@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nationalId: MyString
+  nationalId: 12345678-9
   name: MyString
   lastName: MyString
   age: 1
@@ -9,7 +9,7 @@ one:
   pictureUrl: MyString
 
 two:
-  nationalId: MyString
+  nationalId: 98765432-1
   name: MyString
   lastName: MyString
   age: 1

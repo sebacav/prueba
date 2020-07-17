@@ -32,13 +32,13 @@ images:
 options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
-  _GCR_HOSTNAME: xx
-  _PLATFORM: xx
-  _LABELS: xx
-  _TRIGGER_ID: xx
-  _SERVICE_NAME: xx
-  _DEPLOY_REGION: xx
+  _TRIGGER_ID: 6584a53e-cc81-4397-892a-73635d70ffe2
+  _GCR_HOSTNAME: us.gcr.io
+  _PLATFORM: managed
+  _SERVICE_NAME: people23
+  _DEPLOY_REGION: us-central1
+  _LABELS: gcb-trigger-id=6584a53e-cc81-4397-892a-73635d70ffe2
 tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed
-  - peoeple23
+  - people23

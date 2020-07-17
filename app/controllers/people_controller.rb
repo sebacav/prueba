@@ -12,7 +12,7 @@ class PeopleController < ApplicationController
     render json: @people 
   end
 
-  # GET /people/1
+  # GET /people/
   # this method show only one person
   def show
     if @person

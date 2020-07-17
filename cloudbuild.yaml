@@ -1,49 +1,44 @@
 steps:
-    # command necessary to make a docker container build in GCP
-    - name: gcr.io/cloud-builders/docker
-      args:
-        - build
-        - '--no-cache'
-        - '-t'
-        - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
-        - .
-        - '-f'
-        - Dockerfile
-      id: Build
-    # command to send the build to Container Registry in GCP 
-    - name: gcr.io/cloud-builders/docker
-      args:
-        - push
-        - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
-      id: Push
-    # command to deploy our container
-    - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-      args:
-        - run
-        - deploy
-        - $_SERVICE_NAME
-        - '--platform=managed'
-        - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
-        - >-
-          --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS
-        - '--region=$_DEPLOY_REGION'
-        - '--quiet'
-      id: Deploy
-      entrypoint: gcloud
-  # image created
-  images:
-    - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
-  options:
-    substitutionOption: ALLOW_LOOSE
-  # variables that we configure in GCP to change if we need
-  substitutions:
-    _GCR_HOSTNAME: xxx
-    _PLATFORM: xxx
-    _LABELS: xxx
-    _TRIGGER_ID: xxx
-    _SERVICE_NAME: xxx
-    _DEPLOY_REGION: xxx
-  tags:
-    - gcp-cloud-build-deploy-cloud-run
-    - gcp-cloud-build-deploy-cloud-run-managed
-    - peoeple23
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '--no-cache'
+      - '-t'
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
+      - .
+      - '-f'
+      - Dockerfile
+    id: Build
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
+    id: Push
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    args:
+      - run
+      - deploy
+      - $_SERVICE_NAME
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
+      - >-
+        --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS
+      - '--region=$_DEPLOY_REGION'
+      - '--quiet'
+    id: Deploy
+    entrypoint: gcloud
+images:
+  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
+options:
+  substitutionOption: ALLOW_LOOSE
+substitutions:
+  _GCR_HOSTNAME: xx
+  _PLATFORM: xx
+  _LABELS: xx
+  _TRIGGER_ID: xx
+  _SERVICE_NAME: xx
+  _DEPLOY_REGION: xx
+tags:
+  - gcp-cloud-build-deploy-cloud-run
+  - gcp-cloud-build-deploy-cloud-run-managed
+  - peoeple23

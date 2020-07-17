@@ -1,4 +1,4 @@
-* 23People Application
+# 23People Application
 
 This is an API with CI/CD, using GCP Cloud Run, GCP SQL (postgres) and Apigee proxy with auth.
 in the developer branch you can see the most important steps to make this small API.

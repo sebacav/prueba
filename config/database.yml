@@ -18,8 +18,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: 34.68.160.23
-  username: <%= ENV.fetch("TEST_USERNAME") %>
-  password: <%= ENV.fetch("TEST_PASSWORD") %>
+  username: rails
+  password: B6yCwsrdHc
   
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -87,5 +87,3 @@ test:
 production:
   <<: *default
   database: people_production
-  username: <%= ENV.fetch("DB_USERNAME") %>
-  password: <%= ENV.fetch("DB_PASSWORD") %>

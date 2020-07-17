@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_230903) do
   enable_extension "plpgsql"
 
   create_table "people", force: :cascade do |t|
-    t.string "nationalId"
+    t.string "nationalId", null: false
     t.string "name"
     t.string "lastName"
     t.integer "age"

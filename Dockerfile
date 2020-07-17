@@ -1,5 +1,4 @@
 FROM ruby:2.6-alpine3.11
-# FROM ruby:2.6-slim
 #set bundler version
 ENV BUNDLER_VERSION=2.1.4
 # update necessary packages
@@ -43,8 +42,7 @@ COPY . ./
 RUN ["chmod", "+x","./entrypoints/docker-entrypoint.sh"]
 # Run script
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
-# set rails to production
-# ENV RAILS_ENV=production
+
 # Never set this variable in real life, only if you wanna drop you database
 # ENV DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 ENV TEST_USERNAME=rails
@@ -59,7 +57,9 @@ ENV DB_PASSWORD=xxx
 # RUN ["rails", "db:schema:load"]
 # drop database, just for this example
 # RUN ["rails", "db:reset"]
-ENV RAILS_ENV=production
+# Run the controller test API
 RUN ["rails", "test"]
+# set rails to production
+ENV RAILS_ENV=production
 # Start the main process in production.
 CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]

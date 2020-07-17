@@ -47,8 +47,8 @@ ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
 # ENV DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 ENV TEST_USERNAME=rails
 ENV TEST_PASSWORD=B6yCwsrdHc
-ENV DB_USERNAME=xxx
-ENV DB_PASSWORD=xxx
+ENV DB_USERNAME=xxxxx
+ENV DB_PASSWORD=xxxxx
 # Create database if it dosen't exist
 # RUN ["rails", "db:create"]
 # Migrate news schemas
